@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Malicious Job-Ad Detector — Verify Before You Apply</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <!-- FIXED TOP NAVIGATION BAR -->
+    <nav class="navbar">
+        <div class="nav-brand">🛡️ Malicious Job-Ad Detector</div>
+        <ul class="nav-links">
+            <li><a href="javascript:void(0)" onclick="scrollToSection('hero-section')">Home</a></li>
+            <li><a href="javascript:void(0)" onclick="scrollToSection('instructions-section')">How It Works</a></li>
+            <li><a href="javascript:void(0)" onclick="scrollToSection('analyzer-section')">Analyzer</a></li>
+            <li><a href="javascript:void(0)" onclick="scrollToSection('suggestions-section')">Safety Tips</a></li>
+            <li><a href="javascript:void(0)" onclick="scrollToSection('review-section')">Review</a></li>
+        </ul>
+    </nav>
+
+    <div class="main-container">
+        
+        <!-- SECTION 1: HERO / LANDING PAGE -->
+        <div class="full-screen-section " id="hero-section">
+            <header class="glass-card hero-card">
+              <div class="hero-badge">🛡️ AI-Powered Verification Tool</div>
+               <h1 class="hero-title">Malicious Job-Ad Detector</h1>
+   <p class="hero-description">
+    One paste. Two seconds. Instant verdict: Real or Fake. 
+    Stop guessing — start verifying.
+</p>
+                <button id="btn-check-now" class="hero-btn" onclick="scrollToSection('instructions-section')">
+                    <span>Check Now</span>
+                    <span class="btn-icon">↓</span>
+                </button>
+            </header>
+        </div>
+
+
+        <!-- SECTION 2: HOW IT WORKS / INSTRUCTIONS -->
+        <div class="full-screen-section reveal " id="instructions-section">
+            <section class="glass-card">
+                <h2 class="card-title">How It Works</h2>
+                <p class="section-desc">Follow these simple steps to analyze any job offer in seconds:</p>
+                
+                <div class="steps-grid">
+                    <div class="step-card">
+                        <div class="step-num">1</div>
+                        <h3>Enter Job Title</h3>
+                        <p>Provide the role name or position title (e.g. Data Entry, Python Developer).</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-num">2</div>
+                        <h3>Paste Description</h3>
+                        <p>Copy text directly from LinkedIn, Indeed, or email and paste it into the analyzer box.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-num">3</div>
+                        <h3>Analyze Job</h3>
+                        <p>Click analyze to trigger our AI risk detection engine and pattern classifier.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-num">4</div>
+                        <h3>Review Results</h3>
+                        <p>Get immediate risk scores, fraud flags, and smart safety recommendations.</p>
+                    </div>
+                </div>
+
+                <div class="pro-tip-box">
+                    💡 <strong>Pro Tip:</strong> Include full salary details, contact info, and registration requirements for maximum accuracy.
+                </div>
+                
+                <div class="action-center">
+                    <button class="glass-btn-sm" onclick="scrollToSection('analyzer-section')">Proceed to Analyzer →</button>
+                </div>
+            </section>
+        </div>
+
+        <!-- SECTION 3: JOB ANALYZER FORM -->
+        <div class="full-screen-section reveal" id="analyzer-section">
+            <section class="glass-card">
+                <h2 class="card-title">Job Listing Details</h2>
+                
+                <form id="job-form">
+                    <div class="input-group">
+                        <label for="job-title">Job Title (Optional)</label>
+                        <input type="text" id="job-title" placeholder="e.g. Remote Data Entry Associate / Software Engineer">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="job-description">Job Description <span class="required">*</span></label>
+                        <textarea id="job-description" rows="8" placeholder="Paste full job description text here..." required></textarea>
+                    </div>
+
+                    <button type="submit reveal" id="analyze-btn" class="glass-btn">
+                        🔍 Analyze Job Posting
+                    </button>
+                </form>
+            </section>
+        </div>
+
+        <!-- SECTION 4: ANALYSIS RESULTS -->
+        <div class="full-screen-section hidden reveal" id="results-wrapper">
+            <section id="results-section" class="glass-card">
+                <h2 class="card-title">Analysis & Verification Results</h2>
+                
+                <div class="results-grid">
+                    <div class="gauge-section">
+                        <h3 class="gauge-title">Fraud Risk Assessment</h3>
+                        <div class="gauge-container">
+                            <div class="gauge">
+                                <div class="gauge-inner"></div>
+                                <div id="risk-score-text" class="gauge-text">0%</div>
+                            </div>
+                        </div>
+                        <div id="classification-badge" class="result-badge">Model Classification</div>
+                    </div>
+
+                    <div class="details-section">
+                        <div class="info-grid">
+                            <div class="info-card glass-inner">
+                                <span class="info-title">Model Classification</span>
+                                <div id="model-output" class="info-value">-</div>
+                            </div>
+                            <div class="info-card glass-inner">
+                                <span class="info-title">Risk Flags Identified</span>
+                                <div id="risk-count" class="info-value">0</div>
+                            </div>
+                        </div>
+
+                        <h4 style="color: #a7f3d0; font-size: 15px; margin-bottom: 12px;">Detected Risk Indicators:</h4>
+                        <div id="risk-list"></div>
+                    </div>
+                </div>
+                
+                <div class="action-center" style="margin-top: 25px;">
+                    <button class="glass-btn-sm" onclick="scrollToSection('suggestions-section')">View Safety Tips ↓</button>
+                </div>
+            </section>
+        </div>
+
+        <!-- SECTION 5: SMART SUGGESTIONS -->
+        <div class="full-screen-section reveal" id="suggestions-section">
+            <section class="glass-card">
+                <h2 class="card-title">Smart Suggestions & Safety Guidelines</h2>
+                <div class="suggestions-grid">
+                    <div class="suggestion-box glass-inner">
+                        <div class="box-icon">💰</div>
+                        <h4>Never Pay Registration Fees</h4>
+                        <p>Legitimate employers will never ask for money for interviews, training kits, or equipment setup.</p>
+                    </div>
+                    <div class="suggestion-box glass-inner">
+                        <div class="box-icon">📧</div>
+                        <h4>Check Domain & Email Format</h4>
+                        <p>Be cautious if recruiters use free domains like @gmail.com instead of official corporate emails.</p>
+                    </div>
+                    <div class="suggestion-box glass-inner">
+                        <div class="box-icon">💬</div>
+                        <h4>Beware of Off-Platform Chat</h4>
+                        <p>If interviews are strictly on Telegram or WhatsApp without video calls, proceed with extreme caution.</p>
+                    </div>
+                    <div class="suggestion-box glass-inner">
+                        <div class="box-icon">🔍</div>
+                        <h4>Verify Company Existence</h4>
+                        <p>Cross-check the company on LinkedIn and Glassdoor to confirm active employees and physical address.</p>
+                    </div>
+                </div>
+                <div class="action-center" style="margin-top: 30px;">
+                    <button class="glass-btn-sm" onclick="scrollToSection('review-section')">Leave Feedback ↓</button>
+                </div>
+            </section>
+        </div>
+
+        <!-- SECTION 6: REVIEWS & FEEDBACK -->
+        <div class="full-screen-section reveal" id="review-section">
+            <section class="glass-card review-card">
+                <h2 class="card-title">User Feedback & Rating</h2>
+                <p style="font-size: 16px; color: #a7f3d0; opacity: 0.85;">Was this fraud detection analysis accurate and helpful?</p>
+                
+                <div class="rating-stars reveal" id="star-rating">
+                    <span class="star" data-value="1">★</span>
+                    <span class="star" data-value="2">★</span>
+                    <span class="star" data-value="3">★</span>
+                    <span class="star" data-value="4">★</span>
+                    <span class="star" data-value="5">★</span>
+                </div>
+
+                <div class="input-group" style="max-width: 650px; margin: 20px auto;">
+                    <textarea id="user-review" rows="4" placeholder="Leave your comments or report false positives..."></textarea>
+                </div>
+
+                <button type="button reveal" id="submit-review-btn" class="glass-btn-sm">Submit Review</button>
+            </section>
+        </div>
+
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
