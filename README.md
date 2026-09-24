@@ -49,19 +49,6 @@ This project is a **Job Verification Tool** built with **Machine Learning and Na
 
 ---
 
-## 🖼️ Screenshots
-
-### 🏠 Homepage
-![Homepage](static/screenshots/homepage.png)
-
-### 🔍 Fake Job Detection
-![Fake Detection](static/screenshots/fake-result.png)
-
-### ✅ Real Job Detection
-![Real Detection](static/screenshots/real-result.png)
-
----
-
 ## 🛠️ Tech Stack
 
 * **Language:** Python 3.10+
